@@ -1,0 +1,128 @@
+@media(min-width: 1101px) {
+#current-container {
+    background-color: rgb(124,200,242);
+    margin-top: 3%;
+    padding-top: 1%;
+    padding-left: 2%;
+    width: 100%;
+}
+
+.upper-text {
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+.desp img {
+    width: 30px;
+}
+#timezone {
+    color: rgb(36, 61, 61);
+}
+img#degree {
+    width: 8px;
+    margin-top: 0%;
+}
+.upper-text {
+    margin-top: 2%;
+    margin-bottom: 4%;
+    font-size: 24px;
+}
+#state_img {
+    width: 40px;
+    height: auto; 
+}
+
+}
+
+@media(min-width: 501px) {
+    #current-container {
+        background-color: rgb(124,200,242);
+        margin-top: 3%;
+        padding-top: 1%;
+        padding-left: 2%;
+        width: 60%;
+    }
+    .upper-text {
+        margin-top: 2%;
+        margin-bottom: 4%;
+        font-size: 16px;
+    }
+    .desp img {
+        width: 30px;
+    }
+    #timezone {
+        color: rgb(36, 61, 61);
+    }
+    img#degree {
+        width: 8px;
+        margin-top: 0%;
+    }
+    .upper-text {
+        margin-top: 2%;
+        margin-bottom: 4%;
+        font-size: 24px;
+    }
+    #state_img {
+        width: 20px;
+        height: auto; 
+    }
+    
+}
+@media(max-width: 500px) {
+    #current-container {
+        background-color: rgb(124,200,242);
+        margin-top: 3%;
+        padding-top: 1%;
+        padding-left: 2%;
+        width: 90%;
+    }
+    #upper_right {
+        width: 20px;
+    }
+    .upper-text {
+        margin-top: 2%;
+        margin-bottom: 4%;
+        font-size: 20px;
+    }
+    .desp img {
+        width: 30px;
+    }
+    #timezone {
+        color: rgb(36, 61, 61);
+    }
+    img#degree {
+        width: 8px;
+        margin-top: 0%;
+    }
+    .upper-text {
+        margin-top: 2%;
+        margin-bottom: 4%;
+        font-size: 15px;
+    }
+    #state_img {
+        width: 20px;
+        height: auto; 
+    }
+        
+}
+/* @media(max-width: 500px) {
+    #state_img {
+        width: 30px;
+        height: auto; 
+    }
+}
+@media(max-width: 200px) {
+    #state_img {
+        width: 20px;
+        height: auto; 
+    }
+}
+
+@media(max-width:500px) {
+    .upper-text {
+        margin-top: 2%;
+        margin-bottom: 4%;
+        font-size: 18px;
+    }
+
+} */
+

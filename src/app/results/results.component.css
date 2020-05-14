@@ -1,0 +1,47 @@
+.btn {
+    background-color: cornflowerblue;
+    color: white;
+    display: block;
+}
+.cus_btn {
+    background-color: white;
+    border-color: white;
+}
+.seal_img {
+    width: 30px;
+}
+
+.delete_btn {
+    background-color: white;
+}
+.icon {
+    color: orange;
+}
+.no-result {
+    background-color: rgb(254, 241, 194);
+    color: rgb(139, 110, 38);
+}
+@media(min-width: 501px) {
+    .ulpos {
+        margin-left: 15%;
+    }
+}
+@media(max-width:500px) {
+    .ulpos {
+        margin-left: 5%;
+    }
+    .tweet_img {
+        width: 15px;
+        height: auto;
+    }
+    li .nav-item {
+        font-size: 5px;
+    }
+}
+
+/* .tweet {
+    margin-left: 50%;
+} */
+.tweet_img {
+    width: 30px;
+}

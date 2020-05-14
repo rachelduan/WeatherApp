@@ -1,0 +1,32 @@
+<div>
+    <form>
+        <select [(ngModel)]="content" class="form-control col-lg-3 col-sm-8 ml-5 mt-5" name="content" id="shown-content">
+            <option value="temperature" selected>Temperature</option>
+            <option value="pressure">Pressure</option>
+            <option value="humidity">Humidity</option>
+            <option value="ozone">Ozone</option>
+            <option value="visibility">Visibility</option>
+            <option value="windSpeed">Wind Speed</option>
+        </select>
+    </form>
+    <div>
+        <div *ngIf="content==='temperature'">
+            <app-temp-chart [hourly_data]="hourly" class="d-flex align-items-center col-lg-10 col-sm-10"></app-temp-chart>
+        </div>
+        <div *ngIf="content==='pressure'">
+            <app-pressure-chart [hourly_data]="hourly" class="d-flex align-items-center col-lg-10 col-sm-10"></app-pressure-chart>
+        </div>
+        <div *ngIf="content==='humidity'">
+            <app-humi-chart [hourly_data]="hourly" class="d-flex align-items-center col-lg-10 col-sm-10"></app-humi-chart>
+        </div>
+        <div *ngIf="content==='ozone'">
+            <app-ozone-chart [hourly_data]="hourly" class="d-flex align-items-center col-lg-10 col-sm-10"></app-ozone-chart>
+        </div>
+        <div *ngIf="content==='visibility'">
+            <app-vis-chart [hourly_data]="hourly" class="d-flex align-items-center col-lg-10 col-sm-10"></app-vis-chart>
+        </div>
+        <div *ngIf="content==='windSpeed'">
+            <app-wind-chart [hourly_data]="hourly" class="d-flex align-items-center col-lg-10 col-sm-10"></app-wind-chart>
+        </div>
+    </div>
+</div> 

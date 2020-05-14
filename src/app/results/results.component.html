@@ -1,0 +1,57 @@
+<div *ngIf="!showResults" class="d-flex align-items-center justify-content-center">
+    <div class="col-lg-10 col-sm-10">
+        <div *ngIf="!hasResults" class="alert no-result">
+            No Results.
+        </div>
+        <div *ngIf="hasResults" class="table-responsive">
+            <table name="favoratesItem" *ngIf="hasResults" class="table table-striped align-items-center">
+                <thead>
+                    <tr class="align-miidle">
+                    <th scope="col">#</th><th scope="col">Image</th><th scope="col">City</th><th scope="col">State</th><th scope="col">Wish List</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let key of objectKeys; let i=index">
+                    <th scope="row" class="align-middle">{{i+1}}</th><td class="align-middle">{{key.cityName}}</td><td class="align-middle">{{key.state}}</td><td class="align-middle"><img class="img-fluid seal_img" src={{key.seal}}></td><td class="align-middle"><button class="btn delete_btn"><i class="material-icons icon" (click)="deleteItem(key.cityName)">delete</i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+<ul class="nav nav-tabs col-lg-8 col-sm-10 ulpos d-flex align-items-center " *ngIf="_submitted && showResults">
+    <script scr="node_modules/chart.js/dist/Chart.js"></script>
+    <li class="nav-item" (click)="activate('current')">
+        <a [(ngClass)]="currentNavClass" href="#current" role="tab" data-toggle="tab">Current</a>
+    </li>
+    <li class="nav-item" (click)="activate('hourly')">
+        <a [(ngClass)]="hourlyNavClass" href="#hourly" role="tab" data-toggle="tab">Hourly</a>
+    </li>
+    <li class="nav-item" (click)="activate('weekly')">
+        <a [(ngClass)]="weeklyNavClass" href="#weekly" role="tab" data-toggle="tab">Weekly</a>
+    </li>
+    
+    <li class="nav-item tweet">
+        <button class="cus_btn"><a class="twitter-share-button" 
+            href="{{twitter_url}}" 
+            target="_blank"
+            data-size="large">
+            <img class="img-fliud tweet_img" src="http://csci571.com/hw/hw8/Images/Twitter.png"></a></button>
+            
+    <li class="nav-item">
+        <button class="cus_btn" (click)="favevent()"><i class="material-icons" id="fav">{{star}}</i></button>
+    </li>
+</ul>
+</div>
+<div class="tab-content" *ngIf="_submitted && showResults">
+    <div role="tabpanel" [(ngClass)]="currentClass" id="current">
+        <app-current [timezone]="weather.timezone" [currently]="weather.currently" [_city]="city" [seal]="state_seal"></app-current>
+    </div> 
+    <div role="tabpanel" [(ngClass)]="hourlyClass" id="hourly">
+        <app-hourly [hourly]="weather.hourly.data"></app-hourly> 
+    </div> 
+    <div role="tabpanel" [(ngClass)]="weeklyClass" id="weekly">
+        <app-weekly [weeklyResult]="weather.daily.data" [latitude]="lat" [longitude]="long" [weeklyCity]="city" class="align-items-center mt-5 ml-10"></app-weekly> 
+    </div> 
+</div>

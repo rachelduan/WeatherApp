@@ -1,0 +1,121 @@
+
+<form class="form-container col-md-8 col-sm-10 col-10 d-block text-white rounded border justify-content-center border-secondary" (ngSubmit)="onSubmit()" #formControl="ngForm">
+    <div class="header form-row text-center d-flex align-items-center">
+        <h1 class="header col-lg col-sm">Weather Search</h1>
+    </div>
+    <div class="form-group form-row">
+        <label for="street_input" class="control-label col-lg-4 col-sm-12 text-lg-center text-sm-left">Street</label>
+        <div class="col-sm-10 col-lg-6">
+            <input [(ngModel)]="street" [disabled]="strt_disabled" name="street" type="text" class="form-control" id="street_input" placeholder="Enter Street Name" required #streetControl="ngModel">
+            <div *ngIf="streetControl.invalid && streetControl.touched" class="alert-danger bg-transparent">Please enter a street.</div>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <label for="city_input" class="control-label col-lg-4 col-sm-12 text-lg-center text-sm-left">City</label>
+        <div class="col-lg-6 col-sm-10">
+            <!-- <input [(ngModel)]="city" [disabled]="ct_disabled" name="city" type="text" class="form-control" id="city_input" placeholder="Enter City Name" required #cityControl="ngModel"> -->
+            <!-- <div *ngIf="cityControl.invalid && cityControl.touched" class="alert-danger bg-transparent">Please enter a city.</div> -->
+            <mat-form-field class="example-full-width col-12 col-sm-12" floatLabel="never" color="transparent">
+                <input [(ngModel)]="city" [disabled]="ct_disabled" name="city" type="text" class="form-control" id="city_input" placeholder="Enter City Name" required #cityControl="ngModel" matInput [matAutocomplete]="auto" (keyup)="changeOptions()"> 
+                <!-- <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"> -->
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        
+    </div>
+    <div class="form-group form-row">
+        <label for="state_input" class="control-label col-lg-4 col-sm-10 text-lg-center text-sm-left">State</label>
+        <div class="col-lg-6 col-sm-10">
+            <select [(ngModel)]="state" [disabled]="stat_disabled" name="state" class="form-control col-lg-6 col-sm-10" id="state_input" required #stateControl="ngModel">
+            <option value="" selected>State</option>
+            <option value="">--------------</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+            </select>
+            <div *ngIf="stateControl.invalid && stateControl.touched" class="alert-danger bg-transparent">Please select a state.</div>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-lg-2"></div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" (click)="resetField()">
+            <label class="form-check-label d-flex align-items-center">Current location</label>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-lg-2"></div>
+        <button type="submit" class="btn btn-light border border-dark d-flex align-items-center mr-3" [disabled]="!formControl.form.valid && !itemChecked" (click)="updateGeoInput()">
+                <i class="material-icons">search</i> Search</button>
+        <button type="reset" class="btn btn-light border border-dark d-flex align-items-center" (click)="unSubmit()">
+                <i class="material-icons">clear_all</i> Clear</button>
+    </div>
+</form>
+<div class="text-center mt-5 mb-5">
+    <button type="button" id="btn-results" [ngStyle]="result_btn_style" class="btn btn-outline-dark mr-5" (click)="showContent(true)">Results</button>
+    <button type="button" id="btn-favs" [ngStyle]="fav_btn_style" class="btn btn-outline-dark" (click)="showContent(false)">Favorates</button>
+</div>
+<div>
+    <div class="progress mt-5" *ngIf="showProgress">
+        <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>           
+    <app-results class="mt-5" *ngIf="!showProgress" [weather]="weatherResults" [submitted]="formSubmitted" [showResults]="results" [state_seal]="state_seal_url" [city]="city" [state]="state" [lat]="geoLat" [long]="geoLon" [twitter_url]="twitter"></app-results>
+</div>
+<div class="col-lg-10 col-sm-10 d-flex justify-content-center">
+    <div *ngIf="!validInput" class="alert col-lg-10 col-8 no-result text-center">
+        Invalid Inputs.
+    </div>
+</div>
+
